@@ -45,15 +45,28 @@ void Camera::Render()
 	yaw = _rotationY * 0.0174532925f;
 	roll = _rotationZ * 0.0174532925f;
 
-	DirectX::XMMATRIX rotationMatrix = DirectX::XMMatrixRotationRollPitchYaw(pitch, yaw, roll);
+	//DirectX::XMMATRIX rotationMatrix = DirectX::XMMatrixRotationRollPitchYaw(pitch, yaw, roll);
 
-	DirectX::XMVECTOR lookAtVector = DirectX::XMVector3TransformCoord(DirectX::XMLoadFloat3(&lookAt), rotationMatrix);
-	DirectX::XMVECTOR upVector = DirectX::XMVector3TransformCoord(DirectX::XMLoadFloat3(&up), rotationMatrix);
+	//DirectX::XMVECTOR lookAtVector = DirectX::XMVector3TransformCoord(DirectX::XMLoadFloat3(&lookAt), rotationMatrix);
+	//DirectX::XMVECTOR upVector = DirectX::XMVector3TransformCoord(DirectX::XMLoadFloat3(&up), rotationMatrix);
 	DirectX::XMVECTOR positionVector = DirectX::XMLoadFloat3(&position);
 
-	lookAtVector = DirectX::XMVectorAdd(positionVector, lookAtVector);
+	//lookAtVector = DirectX::XMVectorAdd(positionVector, lookAtVector);
 
-	_viewMatrix = DirectX::XMMatrixLookAtLH(positionVector, lookAtVector, upVector);
+	DirectX::XMFLOAT3 focusPosition;
+	focusPosition.x = 5.0f;
+	focusPosition.y = 5.0f;
+	focusPosition.z = 0.0f;
+
+	auto lookAtV = DirectX::XMVectorSubtract(DirectX::XMLoadFloat3(&focusPosition), positionVector);
+	DirectX::XMFLOAT3 cameraRight;
+	cameraRight.x = 0.71f;
+	cameraRight.y = -0.71f;
+	cameraRight.z = 0.0f;
+
+	auto upV = DirectX::XMVector3Cross(lookAtV, DirectX::XMLoadFloat3(&cameraRight));
+
+	_viewMatrix = DirectX::XMMatrixLookAtLH(positionVector, DirectX::XMLoadFloat3(&focusPosition), upV);
 }
 
 void Camera::GetViewMatrix(DirectX::XMMATRIX& viewMatrix)

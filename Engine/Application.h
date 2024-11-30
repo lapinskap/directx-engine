@@ -7,6 +7,7 @@
 #include "Model.h"
 #include "ColorShader.h"
 #include "TextureShader.h"
+#include "Input.h"
 
 const bool FULL_SCREEN = false;
 const bool VSYNC_ENABLED = true;
@@ -17,7 +18,7 @@ class Application
 {
 public:
 	
-	Application(uint screenWidth, uint screenHeight, HWND hwnd);
+	Application(uint screenWidth, uint screenHeight, HWND hwnd, Input* input);
 
 	bool Frame();
 
@@ -26,6 +27,7 @@ private:
 	bool Render();
 
 	D3D _direct3D;
+	Input* _input = nullptr;
 
 	Camera _camera;
 	std::unique_ptr<Model> _model;

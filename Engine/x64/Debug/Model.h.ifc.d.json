@@ -1,7 +1,7 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "c:\\users\\plapi\\source\\repos\\rastertek\\tutorial 05_texturing\\engine\\model.h",
+        "Source": "c:\\users\\plapi\\source\\repos\\directx engine\\engine\\model.h",
         "ProvidedModule": "",
         "Includes": [
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.22621.0\\um\\d3d11.h",
@@ -269,9 +269,9 @@
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.22621.0\\um\\directxmathvector.inl",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.22621.0\\um\\directxmathmatrix.inl",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.22621.0\\um\\directxmathmisc.inl",
-            "c:\\users\\plapi\\source\\repos\\rastertek\\tutorial 05_texturing\\engine\\releaseptr.h",
-            "c:\\users\\plapi\\source\\repos\\rastertek\\tutorial 05_texturing\\engine\\texture.h",
-            "c:\\users\\plapi\\source\\repos\\rastertek\\tutorial 05_texturing\\engine\\common.h",
+            "c:\\users\\plapi\\source\\repos\\directx engine\\engine\\releaseptr.h",
+            "c:\\users\\plapi\\source\\repos\\directx engine\\engine\\texture.h",
+            "c:\\users\\plapi\\source\\repos\\directx engine\\engine\\common.h",
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\memory",
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\yvals_core.h",
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\xkeycheck.h",
@@ -377,7 +377,11 @@
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\xlocbuf",
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\xlocmes",
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\xlocmon",
-            "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\xloctime"
+            "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\xloctime",
+            "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\map",
+            "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\xtree",
+            "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\xnode_handle.h",
+            "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.41.34120\\include\\iostream"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

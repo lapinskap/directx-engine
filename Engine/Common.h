@@ -9,7 +9,8 @@
 #include <fstream>
 #include <format>
 #include <stdint.h>
-
+#include <map>
+#include <iostream>
 using uint = unsigned int;
 using uchar = unsigned char;
 using ushort = unsigned short;

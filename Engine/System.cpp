@@ -1,6 +1,4 @@
-////////////////////////////////////////////////////////////////////////////////
-// Filename: system.cpp
-////////////////////////////////////////////////////////////////////////////////
+#define _CRT_SECURE_NO_WARNINGS
 #include "System.h"
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
@@ -9,6 +7,11 @@ System* ApplicationHandle = nullptr;
 
 System::System()
 {
+	if (AllocConsole())
+	{
+		freopen("CONOUT$", "w", stdout);
+	}
+
 	// Initialize the width and height of the screen to zero before sending the variables into the function.
 	uint screenWidth = 0;
 	uint screenHeight = 0;
@@ -16,7 +19,7 @@ System::System()
 	InitializeWindows(screenWidth, screenHeight);
 
 	// Create and initialize the application class object.  This object will handle rendering all the graphics for this application.
-	_application = std::make_unique<Application>(screenWidth, screenHeight, _hwnd);
+	_application = std::make_unique<Application>(screenWidth, screenHeight, _hwnd, &_input);
 }
 
 System::~System()

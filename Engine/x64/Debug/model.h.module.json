@@ -5,14 +5,14 @@
         {
             "primary-output": "x64\\Debug\\Model.h.obj",
             "outputs": [
-                "C:\\Users\\plapi\\source\\repos\\RasterTek\\Tutorial 05_Texturing\\Engine\\x64\\Debug\\vc143.pdb",
+                "C:\\Users\\plapi\\source\\repos\\DirectX Engine\\Engine\\x64\\Debug\\vc143.pdb",
                 "x64\\Debug\\",
-                "C:\\Users\\plapi\\source\\repos\\RasterTek\\Tutorial 05_Texturing\\Engine\\x64\\Debug\\Model.h.ifc"
+                "C:\\Users\\plapi\\source\\repos\\DirectX Engine\\Engine\\x64\\Debug\\Model.h.ifc"
             ],
             "provides": [
                 {
                     "logical-name": "Model.h",
-                    "source-path": "c:\\users\\plapi\\source\\repos\\rastertek\\tutorial 05_texturing\\engine\\model.h",
+                    "source-path": "c:\\users\\plapi\\source\\repos\\directx engine\\engine\\model.h",
                     "lookup-method": "absolute"
                 }
             ],

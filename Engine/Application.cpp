@@ -1,11 +1,13 @@
 #include "Application.h"
 
 
-Application::Application(uint screenWidth, uint screenHeight, HWND hwnd)
+Application::Application(uint screenWidth, uint screenHeight, HWND hwnd, Input* input)
 	: _direct3D(D3D::InitParams{ hwnd, screenWidth, screenHeight, SCREEN_NEAR, SCREEN_DEPTH, VSYNC_ENABLED, FULL_SCREEN })
+	, _input(input)
 {
 	// Set the initial position of the camera.
-	_camera.SetPosition(0.0f, 0.0f, -5.0f);
+	_camera.SetPosition(-0.0f, -0.0f, -15.0f);
+	_camera.SetRotation(-30.0f, 30.0f, -53.0f);
 
 	const char* textureFilename = "../Engine/data/sidewalk.tga";
 
@@ -50,6 +52,48 @@ bool Application::Render()
 
 bool Application::Frame()
 {
+	if (_input->IsKeyDown(VK_DOWN))
+	{
+		auto rotation = _camera.GetRotation();
+		rotation.x += 1.0f;
+		_camera.SetRotation(rotation.x, rotation.y, rotation.z);
+		std::cout << rotation.x << " " << rotation.y << " " << rotation.z << std::endl;
+	}
+	if (_input->IsKeyDown(VK_UP))
+	{
+		auto rotation = _camera.GetRotation();
+		rotation.x -= 1.0f;
+		_camera.SetRotation(rotation.x, rotation.y, rotation.z);
+		std::cout << rotation.x << " " << rotation.y << " " << rotation.z << std::endl;
+	}
+	if (_input->IsKeyDown(VK_RIGHT))
+	{
+		auto rotation = _camera.GetRotation();
+		rotation.y += 1.0f;
+		_camera.SetRotation(rotation.x, rotation.y, rotation.z);
+		std::cout << rotation.x << " " << rotation.y << " " << rotation.z << std::endl;
+	}
+	if (_input->IsKeyDown(VK_LEFT))
+	{
+		auto rotation = _camera.GetRotation();
+		rotation.y -= 1.0f;
+		_camera.SetRotation(rotation.x, rotation.y, rotation.z);
+		std::cout << rotation.x << " " << rotation.y << " " << rotation.z << std::endl;
+	}
+	if (_input->IsKeyDown(VK_RETURN))
+	{
+		auto rotation = _camera.GetRotation();
+		rotation.z += 0.1f;
+		_camera.SetRotation(rotation.x, rotation.y, rotation.z);
+		std::cout << rotation.x << " " << rotation.y << " " << rotation.z << std::endl;
+	}
+	if (_input->IsKeyDown(VK_SPACE))
+	{
+		auto rotation = _camera.GetRotation();
+		rotation.z -= 0.1f;
+		_camera.SetRotation(rotation.x, rotation.y, rotation.z);
+		std::cout << rotation.x << " " << rotation.y << " " << rotation.z << std::endl;
+	}
 	return Render();
 }
 

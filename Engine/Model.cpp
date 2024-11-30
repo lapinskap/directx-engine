@@ -2,6 +2,7 @@
 #include "D3D.h"
 #include "Common.h"
 
+
 struct VertexType
 {
 	DirectX::XMFLOAT3 position;
@@ -29,11 +30,15 @@ void Model::InitializeBuffers(ID3D11Device* device, ID3D11DeviceContext* deviceC
 {
 	HRESULT result;
 
+	const int GRID_SIZE = 10;
+	const int VERTICES_PER_ROW = GRID_SIZE + 1;
+	const int VERTICES_PER_COLUMN = GRID_SIZE + 1;
+
 	// Set the number of vertices in the vertex array.
-	_vertexCount = 4;
+	_vertexCount = VERTICES_PER_ROW * VERTICES_PER_COLUMN;
 
 	// Set the number of indices in the index array.
-	_indexCount = 6;
+	_indexCount = GRID_SIZE * GRID_SIZE * 6;
 
 	// Create the vertex array.
 	std::vector<VertexType> vertices(_vertexCount);
@@ -41,26 +46,37 @@ void Model::InitializeBuffers(ID3D11Device* device, ID3D11DeviceContext* deviceC
 	// Create the index array.
 	std::vector<uint> indices(_indexCount);
 
-	// Load the vertex array with data.
-	vertices[0].position = DirectX::XMFLOAT3(-1.0f, -1.0f, 0.0f);  // Bottom left
-	vertices[0].texture = DirectX::XMFLOAT2(0.0f, 0.0f);
+	// Initialize vertex array
+	for (int row = 0; row < VERTICES_PER_COLUMN; ++row)
+	{
+		for (int col = 0; col < VERTICES_PER_ROW; ++col)
+		{
+			int index = row * VERTICES_PER_ROW + col;
+			
+			vertices[index].position = DirectX::XMFLOAT3((float)col, (float)row, 0.0f);
+			vertices[index].texture = DirectX::XMFLOAT2((float)col / GRID_SIZE, (float)row / GRID_SIZE);
+		}
+	}
 
-	vertices[1].position = DirectX::XMFLOAT3(-1.0f, 1.0f, 0.0f);  // Top left
-	vertices[1].texture = DirectX::XMFLOAT2(0.0f, 1.0f);
+	// Initialize index array
+	int index = 0;
+	for (int row = 0; row < GRID_SIZE; ++row)
+	{
+		for (int col = 0; col < GRID_SIZE; ++col)
+		{
+			int topLeft = row * VERTICES_PER_ROW + col;
+			int topRight = topLeft + 1;
+			int bottomLeft = topLeft + VERTICES_PER_ROW;
+			int bottomRight = bottomLeft + 1;
 
-	vertices[2].position = DirectX::XMFLOAT3(1.0f, -1.0f, 0.0f);  // Bottom right
-	vertices[2].texture = DirectX::XMFLOAT2(1.0f, 0.0f);
-
-	vertices[3].position = DirectX::XMFLOAT3(1.0f, 1.0f, 0.0f); // Top right
-	vertices[3].texture = DirectX::XMFLOAT2(1.0f, 1.0f);
-
-	// Load the index array with data.
-	indices[0] = 0;  // Bottom left.
-	indices[1] = 1;  // Top left.
-	indices[2] = 2;  // Bottom right.
-	indices[3] = 1;  // Top left.
-	indices[4] = 3;  // Top right.
-	indices[5] = 2;  // Bottom right.
+			indices[index++] = topLeft;
+			indices[index++] = bottomLeft;
+			indices[index++] = topRight;
+			indices[index++] = topRight;
+			indices[index++] = bottomLeft;
+			indices[index++] = bottomRight;
+		}
+	}
 
 	// Set up the description of the static vertex buffer.
 	D3D11_BUFFER_DESC vertexBufferDesc;
